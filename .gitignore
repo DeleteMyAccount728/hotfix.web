@@ -169,3 +169,4 @@ typings/
 # Custom
 package-lock.json
 build
+.DS_Store
