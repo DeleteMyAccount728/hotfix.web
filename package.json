@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env PORT=10888 react-scripts start",
     "build": "react-scripts build",
-    "surge-deploy": "npm run build && surge ./build -—domain hotfix.web.red-sunny-robots.surge.sh"
+    "surge-deploy": "npm run build && surge ./build hotfix.web.red-sunny-robots.surge.sh"
   },
   "keywords": [],
   "author": "",
