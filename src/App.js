@@ -114,16 +114,6 @@ const placesMap = FOOD_AREAS.reduce((result, area) => {
 	return result;
 }, {});
 
-const foodsMap = FOOD_AREAS.reduce((result, area) => {
-	area.items.forEach(item => {
-		item.foods.forEach(food => {
-			result[food.id] = food;
-		});
-	});
-
-	return result;
-}, {});
-
 const App = () => {
 	const [ orderStatuses, setOrderStatuses ] = useState(JSON.parse((localStorage.getItem('orderStatuses') || 'null')) || {});
 	const [ order, setOrder ] = useState(JSON.parse((localStorage.getItem('orders') || 'null')) || {});
@@ -195,11 +185,11 @@ const App = () => {
 										updatedOrder[foodId].count++;
 									} else {
 										let item = FOOD_AREAS.filter(area => {
-												return area.id == areaId;
+												return area.id === areaId;
 											})[0].items.filter(item => {
-												return item.id == itemId;
+												return item.id === itemId;
 											})[0].foods.filter(food => {
-												return food.id == foodId;
+												return food.id === foodId;
 											})[0];
 										updatedOrder[foodId] = {
 											item: item,
