@@ -121,10 +121,11 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
         </div>
         <div className="Place__choice-item">
           <span>Назначить</span>
-          <input
+          <input type="time"
             value={time}
             onFocus={() => {
               setFaster(false);
+              setTime("12:00");
             }}
             onChange={event => {
               setFaster(false);
@@ -147,7 +148,7 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
         </div>
       </div>
       <footer className="Place__footer">
-        <Link to={`/order/${area.id}/${item.id}`} className="Place__order">
+        <Link to={`/order/${area.id}/${item.id}`} className="Place__order" hidden={price === "0"}>
           Оплатить {price}
         </Link>
       </footer>
