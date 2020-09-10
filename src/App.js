@@ -189,15 +189,22 @@ const App = () => {
 								item={placesMap[routeProps.location.pathname]}
 								area={FOOD_AREAS[0]}
 								order={order}
-								onIncrementPosition={({ id, itemId, areaId }) => {
+								onIncrementPosition={({ foodId, itemId, areaId }) => {
 									const updatedOrder = {...order};
-
-									if (id in updatedOrder) {
-										updatedOrder[id].count++;
+									if (foodId in updatedOrder) {
+										updatedOrder[foodId].count++;
 									} else {
-										updatedOrder[id] = {
-											item: foodsMap[id],
+										let item = FOOD_AREAS.filter(area => {
+												return area.id == areaId;
+											})[0].items.filter(item => {
+												return item.id == itemId;
+											})[0].foods.filter(food => {
+												return food.id == foodId;
+											})[0];
+										updatedOrder[foodId] = {
+											item: item,
 											count: 1,
+											placeId: itemId
 										};
 									}
 
@@ -225,14 +232,14 @@ const App = () => {
 									setOrder(updatedOrder);
 									setOrderStatuses(nextOrderStatuses);
 								}}
-								onDecrementPosition={({ id, itemId, areaId }) => {
+								onDecrementPosition={({ foodId, itemId, areaId }) => {
 									const updatedOrder = {...order};
 
-									if (id in updatedOrder) {
-										if (updatedOrder[id].count === 1) {
-											delete updatedOrder[id];
+									if (foodId in updatedOrder) {
+										if (updatedOrder[foodId].count === 1) {
+											delete updatedOrder[foodId];
 										} else {
-											updatedOrder[id].count--;
+											updatedOrder[foodId].count--;
 										}
 									}
 

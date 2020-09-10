@@ -111,6 +111,7 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
             checked={faster} 
             onToggle={() => {
               if (faster) {
+                setTime("12:00");
                 setFaster(false);
               } else {
                 setTime('');
